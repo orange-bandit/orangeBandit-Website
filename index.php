@@ -16,7 +16,7 @@
             }
             #mainheader {
                 font-family: 'mainfont',Arial, sans-serif;
-                
+                cursor:pointer;
                 color: brown;
                 margin: 0 auto;
                 text-align: center;
@@ -33,15 +33,55 @@
             }
             body {
                 font-family: 'mainfont',Arial, sans-serif;
-                max-width: 800px;
+                max-width:fit-content;
                 margin: 0 auto;
-                padding: 20px;
                 
             }
             button {
                 font-size: 18px;
                 padding: 10px 20px;
                 cursor: pointer;
+            }
+            #orangeContainer {
+                display:flex;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 100%;
+                max-width:1200px;
+                margin: 0 auto;
+                padding-bottom: 50px;
+            }
+            .item {
+                padding: 20px 40px;
+                width: 300px;
+                height: 200px;
+                background-image: url('siteImages/kawaii-orangeAtComputer.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                font-size: 24px;
+                font-weight: bold;
+                color: #ffffff;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                border: none;
+                border-radius: 10px;
+                margin: 10px;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                white-space: normal;
+                overflow: hidden;
+                line-height: 1.2;
+             }
+            
+            .item:hover {
+                transform: scale(1.15);
+                
+            }
+            #infoBoard {
+                background-size: cover;
+                background-color: lightgray;
             }
         </style>
 
@@ -54,22 +94,39 @@
         </header>
         <section>
             <div id="orangeContainer">
-                <button id="orangeButton">Take Orange</button>
+                <button class="item" data-default-text="BUILD" data-hover-text="BUILD your new WEBSITE" data-expo-text="whether its an online-store, portfolio, we build whatever you need for our business"> BUILD</button>
+                <button class="item" data-default-text="LEARN" data-hover-text="Learn to BUILD your new WEBSITE" data-expo-text="if you're more interested in doing it you self orangeBandit will teach you all the neccesary skill required to build your dream WEBSITE"> LEARN</button>
+                <button class="item" data-default-text="CONSULT" data-hover-text="Explore New Ideas" data-expo-text="can't fully explain what you want hop on a consultation call and we'll help flesh out all you dream Ideas"> CONSULT</button>
             </div>
-            <div id="scoreContainer"></div>
-            <div id="gameOverContainer"></div>
-            <div id="restartButtonContainer"></div>
+            <div id="infoBoard">
+                <h1> orangeBandit is committed to help you achieve whats best for your career, and business</h1>
+                <p class="infoText"> fucking hell</p>
+            </div>
         </section>
-        <p>
-            In this game, you will be presented with a series of oranges. Each time you choose to take an orange, your score will increase by 1. However, if you choose to take an orange that's not an orange, your score will decrease by 2. The game will continue until you either reach a score of 100 or lose all your points.
-        </p>
-        <button onclick="playGame()">Start Game</button>
+
 
         <script>
-            function playGame() {
-                alert("Game started! This function needs to be implemented.");
-                // Implement your game logic here
-            }
+            let expoText = "";
+            let expoPar = document.getElementByClass('infoText');
+            document.querySelectorAll('.item').forEach(button => {
+
+                const defaultText = button.getAttribute('data-default-text');
+                const hoverText = button.getAttribute('data-hover-text');
+
+                
+                expoText = button.getAttribute('data-expo-text');
+
+                button.addEventListener('mouseenter', () => {
+                    button.textContent = hoverText;
+                    expoPar.textContent = expoText
+                })
+                button.addEventListener('mouseleave', () => {
+                    button.textContent = defaultText;
+                    expoPar.defaultText = ""
+                })
+
+
+            })
         </script>
     </body>
 </html>
